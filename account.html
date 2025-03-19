@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            padding: 15px;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            font-weight: bold;
+            background-color: black;
+        }
+        .language {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .language img {
+            width: 20px;
+            margin-right: 5px;
+        }
+        .welcome-section {
+            background: blue;
+            padding: 20px;
+            text-align: center;
+        }
+        .welcome-section img {
+            width: 60px;
+        }
+        .vip-upgrade {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: darkblue;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .balance-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            font-size: 14px;
+            border-bottom: 1px solid gray;
+        }
+        .balance-card {
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px;
+            text-align: center;
+        }
+        .balance-card .icon {
+            font-size: 30px;
+        }
+        .balance-card strong {
+            font-size: 18px;
+            color: gold;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .buttons button {
+            flex: 1;
+            margin: 5px;
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .services {
+            margin: 20px;
+            padding: 15px;
+            background: #222;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .services-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .service-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .service-item {
+            width: 50px;
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .service-item img {
+            width: 30px;
+            margin-bottom: 5px;
+        }
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #111;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #444;
+        }
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+        }
+        .nav-item.active {
+            color: gold;
+        }
+        .floating-chat {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            background: blue;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Account
+        <div class="language">
+            <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="US Flag">
+            English
+        </div>
+    </div>
+
+    <div class="welcome-section">
+        <img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=024" alt="USDT">
+        <div>Welcome</div>
+        <div class="vip-upgrade">VIP Upgrade</div>
+    </div>
+
+    <div class="balance-section">
+        <div>
+            <strong>0 USDT</strong>
+            <div>Today transfer in limit</div>
+        </div>
+        <div>
+            <strong>0 USDT</strong>
+            <div>Month transfer in limit</div>
+        </div>
+    </div>
+
+    <div class="balance-card">
+        <div class="icon">💰</div>
+        <strong><span id="crypto-balance">0</span> USDT ≈ $<span id="usd-value">0.00</span></strong>
+        <div>Balance</div>
+        <button class="login-btn">Login</button>
+        <div class="buttons">
+            <button>Deposit</button>
+            <button>Withdraw</button>
+            <button>Transfer</button>
+        </div>
+    </div>
+
+    <div class="services">
+        <div class="services-title">Other Services</div>
+        <div class="service-icons">
+            <div class="service-item">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/money-bag.png" alt="Financing">
+                Financing
+            </div>
+            <div class="service-item">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/lock.png" alt="Security">
+                Security
+            </div>
+            <div class="service-item">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/sms.png" alt="Message">
+                Message
+            </div>
+            <div class="service-item">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/customer-support.png" alt="Contact">
+                Contact
+            </div>
+            <div class="service-item">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/question-mark.png" alt="Questions">
+                Questions
+            </div>
+            <div class="service-item">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/wallet.png" alt="Wallet">
+                Wallet
+            </div>
+            <div class="service-item">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/power-off.png" alt="Logout">
+                Logout
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="financing.html" class="nav-item">Financing</a>
+        <a href="vip.html" class="nav-item">Vip</a>
+        <a href="account.html" class="nav-item active">Account</a>
+    </div>
+
+    <div class="floating-chat">💬</div>
+
+    <script>
+        async function fetchCryptoPrice() {
+            try {
+                let response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=usd');
+                let data = await response.json();
+                let price = data.tether.usd;
+                document.getElementById("usd-value").innerText = price.toFixed(2);
+            } catch (error) {
+                console.log("Error fetching price:", error);
+            }
+        }
+
+        fetchCryptoPrice();
+        setInterval(fetchCryptoPrice, 10000); // Update every 10 seconds
+    </script>
+</body>
+</html>
