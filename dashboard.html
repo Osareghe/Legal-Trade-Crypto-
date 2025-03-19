@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bit-Digital Mining Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        .header {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            background: #333;
+            border-radius: 5px;
+        }
+        .user-info {
+            background: #333;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        .user-info img {
+            width: 40px;
+            vertical-align: middle;
+        }
+        .balance-section {
+            background: #444;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        .balance {
+            font-size: 24px;
+            font-weight: bold;
+            color: yellow;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+
+        .button {
+            display: block;
+            width: 80%;
+            margin: 5px auto;
+            padding: 10px;
+            background: gray;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .other-services {
+            margin-top: 20px;
+        }
+        .service-button {
+            display: inline-block;
+            width: 45%;
+            margin: 5px;
+            padding: 10px;
+            background: gray;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAT8PbIOx8YIwWhLTahkNvf02y7yGg3yFo",
+      authDomain: "bit-digital-database.firebaseapp.com",
+      projectId: "bit-digital-database",
+      storageBucket: "bit-digital-database.appspot.com",
+      messagingSenderId: "18485548254",
+      appId: "1:18485548254:web:03b854140afbb027cb5e4f"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+  </script>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">Welcome to <b>Bit-Digital Mining Online</b></div>
+
+    <div class="user-info">
+      <div class="overview">
+        <div class="card">
+          <div class="icon">👤</div>
+          <p id="welcomeMessage">Welcome, user</p>
+        </div>
+      </div>
+    </div>
+       <div class="balance-section">
+        <p>Balance: <span id="balanceDisplay">0.00</span></p>
+        <p>Bonus: <span id="bonusDisplay">0.00</span></p>
+        <p>Withdrawal: <span id="withdrawalDisplay">0.00</span></p>
+
+        <!-- Update Balance Section (Conditionally Displayed) -->
+        <div id="adminBalanceUpdateSection" style="display:none;">
+            <input type="number" id="balanceUpdateAmount" placeholder="Enter amount">
+            <button onclick="updateBalance()">Update Balance</button>
+        </div>
+    </div>
+                <div class="buttons">
+                <button class="button" onclick="openLiveChat()">Deposit</button>
+                <button class="button" onclick="openLiveChat()">Withdraw</button>
+                <button class="button" onclick="openLiveChat()">Transfer</button>
+            </div>
+        </div>
+
+        <div class="other-services">
+            <div><b>Other Services</b></div>
+            <button class="service-button" onclick="openLiveChat()">Financing</button>
+            <button class="service-button" onclick="openLiveChat()">Wallet</button>
+            <button class="service-button" onclick="openLiveChat()">Security</button>
+            <button class="service-button" onclick="openLiveChat()">Questions</button>
+        </div>
+    </div>
+    <script>
+        firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+            const userId = user.uid;
+
+            firebase.firestore().collection('users').doc(userId).get()
+              .then((doc) => {
+                if (doc.exists) {
+                  const userData = doc.data();
+                  const username = userData.username;
+                  const balance = userData.balance;
+                  const bonus = userData.bonus;
+                  const withdrawal = userData.withdrawal;
+
+                  // Update the username display
+                  const welcomeMessage = document.getElementById('welcomeMessage');
+                  welcomeMessage.textContent = `Welcome, ${username}`;
+
+                  // Update balance, bonus, and withdrawal displays
+                  document.getElementById('balanceDisplay').textContent = balance.toFixed(2);
+                  document.getElementById('bonusDisplay').textContent = bonus.toFixed(2);
+                  document.getElementById('withdrawalDisplay').textContent = withdrawal.toFixed(2);
+                } else {
+                  console.log("No such document!");
+                  // Reset all values
+                  document.getElementById('welcomeMessage').textContent = "Welcome, user";
+                  document.getElementById('balanceDisplay').textContent = "0.00";
+                  document.getElementById('bonusDisplay').textContent = "0.00";
+                  document.getElementById('withdrawalDisplay').textContent = "0.00";
+                }
+              })
+              .catch((error) => {
+                console.log("Error getting document:", error);
+                // Reset all values
+                document.getElementById('welcomeMessage').textContent = "Welcome, user";
+                document.getElementById('balanceDisplay').textContent = "0.00";
+                document.getElementById('bonusDisplay').textContent = "0.00";
+                document.getElementById('withdrawalDisplay').textContent = "0.00";
+              });
+
+              // Check if the user is an admin and show/hide the balance update section
+              firebase.firestore().collection('admins').doc(userId).get()
+                .then((doc) => {
+                  if (doc.exists && doc.data().isAdmin === true) {
+                    // User is an admin, show the balance update section
+                    document.getElementById('adminBalanceUpdateSection').style.display = 'block'; // Or 'inline'
+                  } else {
+                    // User is not an admin, hide the balance update section
+                    document.getElementById('adminBalanceUpdateSection').style.display = 'none';
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error checking admin status:", error);
+                  document.getElementById('adminBalanceUpdateSection').style.display = 'none';
+                });
+            } else {
+              // User is signed out
+              document.getElementById('welcomeMessage').textContent = "Welcome, user";
+              document.getElementById('balanceDisplay').textContent = "0.00";
+              document.getElementById('bonusDisplay').textContent = "0.00";
+              document.getElementById('withdrawalDisplay').textContent = "0.00";
+            }
+        });
+    </script>
+  </div>
+</body>
+</html>
