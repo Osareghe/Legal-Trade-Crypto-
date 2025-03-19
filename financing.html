@@ -33,6 +33,7 @@
         }
         .container {
             padding: 15px;
+            padding-bottom: 60px; /* Space for the nav bar */
         }
         .balance-card {
             background: #222;
@@ -104,6 +105,27 @@
             font-weight: bold;
             width: 100%;
         }
+
+        /* Bottom Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #111;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #444;
+        }
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .active {
+            color: gold; /* Highlight active tab */
+        }
     </style>
 </head>
 <body>
@@ -158,6 +180,14 @@
         <button class="buy-btn">Buy</button>
     </div>
 
+    <!-- Bottom Navigation Bar -->
+    <div class="nav-bar">
+        <a href="index.html" class="nav-item active">Home</a>
+        <a href="financing.html" class="nav-item">Financing</a>
+        <a href="vip.html" class="nav-item">Vip</a>
+        <a href="account.html" class="nav-item">Account</a>
+    </div>
+
     <script>
         async function fetchCryptoPrice() {
             try {
@@ -172,6 +202,13 @@
 
         fetchCryptoPrice();
         setInterval(fetchCryptoPrice, 10000); // Update every 10 seconds
+
+        // Highlight the active page in the navigation
+        document.querySelectorAll(".nav-item").forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add("active");
+            }
+        });
     </script>
 </body>
 </html>
