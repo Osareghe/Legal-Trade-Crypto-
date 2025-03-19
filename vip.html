@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Upgrade</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        .header {
+            background: black;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+        }
+        .header img {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 25px;
+        }
+        .header .lang {
+            position: absolute;
+            right: 40px;
+            top: 12px;
+            font-size: 14px;
+        }
+        .balance-section {
+            background: #222;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        .balance-section i {
+            font-size: 40px;
+            color: #00ffcc;
+            margin-right: 10px;
+        }
+        .balance {
+            font-size: 16px;
+            color: #FDC830;
+        }
+        .login-btn {
+            background: #005eff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .vip-card {
+            margin: 10px;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .vip-card i {
+            font-size: 40px;
+            margin-right: 15px;
+        }
+        .vip-info {
+            flex-grow: 1;
+        }
+        .vip-card h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .vip-card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .vip-select {
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .vip-card.selected .vip-select {
+            background: white;
+        }
+        .vip1 { background: #C96C4F; }
+        .vip2 { background: #BFCAD1; }
+        .vip3 { background: #E2A537; }
+        .vip4 { background: #6EB1E8; }
+        .vip5 { background: #F9CC00; }
+        .navbar {
+            background: black;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid gray;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            flex-grow: 1;
+        }
+        .navbar a.active {
+            color: #005eff;
+        }
+        .chat-btn {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            background: #005eff;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        VIP Upgrade
+        <img src="us_flag.png" alt="US Flag">
+        <span class="lang">English</span>
+    </div>
+
+    <div class="balance-section">
+        <i class="fas fa-dollar-sign"></i>
+        <div>
+            <div class="balance">0.00</div>
+            <div>Balance (USDT)</div>
+        </div>
+        <a href="#" class="login-btn">Login</a>
+    </div>
+
+    <div class="vip-card vip1" onclick="selectVIP(this)">
+        <i class="fas fa-medal"></i>
+        <div class="vip-info">
+            <h3>VIP1</h3>
+            <p>Daily transfer limit: 10.00</p>
+            <p>Monthly transfer limit: 30.00</p>
+        </div>
+        <div>
+            <h3>50.00</h3>
+            <p>Valid days: 60</p>
+        </div>
+        <div class="vip-select"></div>
+    </div>
+
+    <div class="vip-card vip2" onclick="selectVIP(this)">
+        <i class="fas fa-medal"></i>
+        <div class="vip-info">
+            <h3>VIP2</h3>
+            <p>Daily transfer limit: 100.00</p>
+            <p>Monthly transfer limit: 3000.00</p>
+        </div>
+        <div>
+            <h3>1000.00</h3>
+            <p>Valid days: 60</p>
+        </div>
+        <div class="vip-select"></div>
+    </div>
+
+    <div class="vip-card vip3" onclick="selectVIP(this)">
+        <i class="fas fa-medal"></i>
+        <div class="vip-info">
+            <h3>VIP3</h3>
+            <p>Daily transfer limit: 30000.00</p>
+            <p>Monthly transfer limit: 450000.00</p>
+        </div>
+        <div>
+            <h3>3000.00</h3>
+            <p>Valid days: 90</p>
+        </div>
+        <div class="vip-select"></div>
+    </div>
+
+    <div class="vip-card vip4" onclick="selectVIP(this)">
+        <i class="fas fa-medal"></i>
+        <div class="vip-info">
+            <h3>VIP4</h3>
+            <p>Daily transfer limit: 750000.00</p>
+            <p>Monthly transfer limit: 1500000.00</p>
+        </div>
+        <div>
+            <h3>15000.00</h3>
+            <p>Valid days: 360</p>
+        </div>
+        <div class="vip-select"></div>
+    </div>
+
+    <div class="vip-card vip5" onclick="selectVIP(this)">
+        <i class="fas fa-medal"></i>
+        <div class="vip-info">
+            <h3>VIP5</h3>
+            <p>Daily transfer limit: 200000.00</p>
+            <p>Monthly transfer limit: 6000000.00</p>
+        </div>
+        <div>
+            <h3>50000.00</h3>
+            <p>Valid days: 360</p>
+        </div>
+        <div class="vip-select"></div>
+    </div>
+
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Financing</a>
+        <a href="#" class="active">Vip</a>
+        <a href="#">Account</a>
+    </div>
+
+    <script>
+        function selectVIP(element) {
+            document.querySelectorAll('.vip-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+    </script>
+  <!-- Start of Tawk.to Script -->
+<script type="text/javascript">
+var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+(function() {
+    var s1 = document.createElement("script"),
+        s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/67d987edb54815190f42aab9/default';
+    s1.charset = 'UTF-8';
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode.insertBefore(s1, s0);
+})();
+</script>
+<!-- End of Tawk.to Script -->
+
+
+</body>
+</html>
